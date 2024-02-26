@@ -41,7 +41,7 @@ namespace ConvexHull.Tests
 
             Assert.NotNull(convexHull);
             Assert.NotEmpty(convexHull);
-            Assert.Equal(4, convexHull.Count);
+            Assert.Equal(expected.Count, convexHull.Count);
 
             Assert.True(expected.SequenceEqual(convexHull));
         }
