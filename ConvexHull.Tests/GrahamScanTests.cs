@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ConvexHull.Tests.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -30,21 +31,10 @@ namespace ConvexHull.Tests
             Assert.Throws<ArgumentException>(() => grahamScan.GetConvexHullPoints(points));
         }
 
-        [Fact]
-        public void GetConvexHullPoints_ShouldReturnConvexHull()
+        [Theory]
+        [ClassData(typeof(GrahamScanTestData))]
+        public void GetConvexHullPoints_ShouldReturnConvexHull(List<Point> points, List<Point> expected)
         {
-            var points = new List<Point>()
-            {
-                new Point(0,0),
-                new Point(1,4),
-                new Point(3,1),
-                new Point(3,3),
-                new Point(5,2),
-                new Point(5,5),
-                new Point(7,0),
-                new Point(9,6),
-            };
-
             IConvexHullAlgorithm grahamScan = new GrahamScan();
             var convexHull = grahamScan.GetConvexHullPoints(points);
 
@@ -52,15 +42,7 @@ namespace ConvexHull.Tests
             Assert.NotEmpty(convexHull);
             Assert.Equal(4, convexHull.Count);
 
-            var expectedPoints = new List<Point>()
-            {
-                new Point(1,4),
-                new Point(9,6),
-                new Point(7,0),
-                new Point(0,0),
-            };
-
-            Assert.True(expectedPoints.SequenceEqual(convexHull));
+            Assert.True(expected.SequenceEqual(convexHull));
         }
     }
 }
