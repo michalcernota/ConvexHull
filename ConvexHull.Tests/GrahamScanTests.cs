@@ -50,7 +50,17 @@ namespace ConvexHull.Tests
 
             Assert.NotNull(convexHull);
             Assert.NotEmpty(convexHull);
-            Assert.All(convexHull, (item) => points.Contains(item));
+            Assert.Equal(4, convexHull.Count);
+
+            var expectedPoints = new List<Point>()
+            {
+                new Point(1,4),
+                new Point(9,6),
+                new Point(7,0),
+                new Point(0,0),
+            };
+
+            Assert.True(expectedPoints.SequenceEqual(convexHull));
         }
     }
 }
