@@ -6,15 +6,13 @@ using System.Threading.Tasks;
 
 namespace ConvexHull.Algorithm
 {
-    public class GrahamScan : IConvexHullAlgorithm
+    public class GrahamScan : BaseAlgorithm, IConvexHullAlgorithm
     {
         public string AlgorithmName => "Graham scan";
 
         public List<Point> GetConvexHullPoints(IEnumerable<Point> points)
         {
-            ArgumentNullException.ThrowIfNull(points);
-            if (points.Count() < 3)
-                throw new ArgumentException("At least 3 points are needed in order to construct a convex hull", nameof(points));
+            CheckInputPoints(points);
 
             var startingPoint = points.OrderBy(p => p.Y).ThenBy(p => p.X).First();
             var sortedPoints = GeometryHelper.OrderByPolarAngle(startingPoint, points);

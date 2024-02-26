@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConvexHull.Algorithm
 {
-    public class JarvisMarch : IConvexHullAlgorithm
+    public class JarvisMarch : BaseAlgorithm, IConvexHullAlgorithm
     {
         public string AlgorithmName => "Jarvis March";
 
