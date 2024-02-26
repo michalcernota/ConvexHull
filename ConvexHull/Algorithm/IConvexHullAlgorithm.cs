@@ -8,6 +8,7 @@ namespace ConvexHull.Algorithm
 {
     public interface IConvexHullAlgorithm
     {
+        public string AlgorithmName { get; }
         List<Point> GetConvexHullPoints(IEnumerable<Point> points);
     }
 }

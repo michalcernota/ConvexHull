@@ -15,8 +15,8 @@ namespace ConvexHull.Tests
         public void GetConvexHullPoints_ThrowsArgumentNullException_IfPointsCollectionIsNull()
         {
             List<Point> points = null;
-            IConvexHullAlgorithm grahamScan = new GrahamScan();
-            Assert.Throws<ArgumentNullException>(() => grahamScan.GetConvexHullPoints(points));
+            var convexHullSolver = new ConvexHullSolver(new GrahamScan());
+            Assert.Throws<ArgumentNullException>(() => convexHullSolver.Solve(points));
         }
 
         [Fact]
@@ -28,16 +28,16 @@ namespace ConvexHull.Tests
                 new Point(1,1)
             };
 
-            IConvexHullAlgorithm grahamScan = new GrahamScan();
-            Assert.Throws<ArgumentException>(() => grahamScan.GetConvexHullPoints(points));
+            var convexHullSolver = new ConvexHullSolver(new GrahamScan());
+            Assert.Throws<ArgumentException>(() => convexHullSolver.Solve(points));
         }
 
         [Theory]
         [ClassData(typeof(GrahamScanTestData))]
         public void GetConvexHullPoints_ShouldReturnConvexHull(List<Point> points, List<Point> expected)
         {
-            IConvexHullAlgorithm grahamScan = new GrahamScan();
-            var convexHull = grahamScan.GetConvexHullPoints(points);
+            var convexHullSolver = new ConvexHullSolver(new GrahamScan());
+            var convexHull = convexHullSolver.Solve(points);
 
             Assert.NotNull(convexHull);
             Assert.NotEmpty(convexHull);

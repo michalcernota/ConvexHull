@@ -8,6 +8,8 @@ namespace ConvexHull.Algorithm
 {
     public class GrahamScan : IConvexHullAlgorithm
     {
+        public string AlgorithmName => "Graham scan";
+
         public List<Point> GetConvexHullPoints(IEnumerable<Point> points)
         {
             ArgumentNullException.ThrowIfNull(points);
