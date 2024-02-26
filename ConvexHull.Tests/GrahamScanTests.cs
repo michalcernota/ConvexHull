@@ -29,5 +29,28 @@ namespace ConvexHull.Tests
             IConvexHullAlgorithm grahamScan = new GrahamScan();
             Assert.Throws<ArgumentException>(() => grahamScan.GetConvexHullPoints(points));
         }
+
+        [Fact]
+        public void GetConvexHullPoints_ShouldReturnConvexHull()
+        {
+            var points = new List<Point>()
+            {
+                new Point(0,0),
+                new Point(1,4),
+                new Point(3,1),
+                new Point(3,3),
+                new Point(5,2),
+                new Point(5,5),
+                new Point(7,0),
+                new Point(9,6),
+            };
+
+            IConvexHullAlgorithm grahamScan = new GrahamScan();
+            var convexHull = grahamScan.GetConvexHullPoints(points);
+
+            Assert.NotNull(convexHull);
+            Assert.NotEmpty(convexHull);
+            Assert.All(convexHull, (item) => points.Contains(item));
+        }
     }
 }
