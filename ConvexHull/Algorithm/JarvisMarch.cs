@@ -25,7 +25,9 @@ namespace ConvexHull.Algorithm
 
                 for (int i = 1; i < points.Count(); i++)
                 {
-                    if (nextPoint == currentPoint || GeometryHelper.GetOrientation(currentPoint, nextPoint, points.ElementAt(i)) == Orientation.CounterClockwise)
+                    var direction = GeometryHelper.GetOrientation(currentPoint, nextPoint, points.ElementAt(i));
+                    if (nextPoint == currentPoint || direction == Orientation.CounterClockwise || (direction == Orientation.Collinear
+                        && GeometryHelper.GetDistance(currentPoint, points.ElementAt(i)) > GeometryHelper.GetDistance(currentPoint, nextPoint)))
                         nextPoint = points.ElementAt(i);
                 }
 

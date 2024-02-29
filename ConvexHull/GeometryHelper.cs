@@ -23,5 +23,11 @@
                 Math.Atan2(p.Y - startingPoint.Y, p.X - startingPoint.X)).ToList();
             return sortedPoints;
         }
+
+        internal static double GetDistance(Point p1, Point p2)
+        {
+            var distance = Math.Sqrt(Math.Pow(p1.X - p2.X, 2) + Math.Pow(p1.Y - p2.Y, 2));
+            return distance;
+        }
     }
 }
