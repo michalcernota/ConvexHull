@@ -16,8 +16,7 @@ namespace ConvexHull.Algorithm
 
             var startingPoint = points.OrderBy(p => p.Y).ThenBy(p => p.X).First();
             var sortedPoints = GeometryHelper.OrderByPolarAngle(startingPoint, points);
-            // TODO: remove collinear points by their distance due to P0
-
+            
             var hull = new Stack<Point>();
             hull.Push(startingPoint);
             hull.Push(sortedPoints[1]);
